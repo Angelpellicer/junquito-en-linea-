@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Home, Search, Heart, Plus, User } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
@@ -27,8 +28,25 @@ export default function Navigation() {
     <>
       {/* Desktop Navigation */}
       <nav className="hidden lg:flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30">
-        <Link href="/" className="text-xl font-bold text-primary dark:text-primary-light">
-          Junquito en Línea
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          {/* Logo para tema claro */}
+          <Image
+            src="/logo.png"
+            alt="Junquito en Línea"
+            width={140}
+            height={40}
+            className="h-10 w-auto dark:hidden"
+            priority
+          />
+          {/* Logo para tema oscuro (opcional - si no existe, logo.png se mostrará en ambos temas si se modifica la clase) */}
+          <Image
+            src="/logo-dark.png"
+            alt="Junquito en Línea"
+            width={140}
+            height={40}
+            className="h-10 w-auto hidden dark:block"
+            priority
+          />
         </Link>
         <div className="flex items-center gap-6">
           {navItems.slice(1).map((item) => {
